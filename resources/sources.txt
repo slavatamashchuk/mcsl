@@ -1,0 +1,3 @@
+minecraft_font.ttf: https://fontmeme.com/fonts/minecraft-font
+dirt.png: minecraft
+icon: https://www.freeiconspng.com/img/16689 (edited)
