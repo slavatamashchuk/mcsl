@@ -19,15 +19,10 @@ button3_color = black
 button4_color = black
 button_height = 100
 button_width = width // 2 - 20
-button_distanse_from_edge = 15
-button_y = height // 2 - 10
+space_between_buttons = 5
 button_border_radius = 2
 small_button_height = button_height // 3
 small_button_distanse_from_button = 15
-button1_3_x = button_distanse_from_edge
-button2_4_x = width - button_width - button_distanse_from_edge
-button1_2_y = button_y - button_height // 2
-button3_4_y = button_y + button_height // 2 + small_button_distanse_from_button
 margin_buttom_of_text = 1
 font_path = "resources/minecraft_font.ttf"
 font_big = pygame.font.Font(font_path, 36)
@@ -42,7 +37,7 @@ dirt_image_resize_amount = 4
 big_button_texture = pygame.transform.scale(pygame.image.load("resources/big_button_texture.png"), (button_width - button_border_radius * 2, button_height - button_border_radius * 2))
 small_button_texture = pygame.transform.scale(pygame.image.load("resources/small_button_texture.png"), (button_width - button_border_radius * 2, small_button_height - button_border_radius * 2))
 dirt_image = pygame.transform.scale(dirt_image, (dirt_image.get_width() * dirt_image_resize_amount, dirt_image.get_height() * dirt_image_resize_amount))
-screen = pygame.display.set_mode((width, height))
+screen = pygame.display.set_mode((width, height), pygame.RESIZABLE)
 surface = pygame.Surface((width, height))
 
 
@@ -50,8 +45,16 @@ while True:
     screen.blit(surface, (0, 0))
     pygame.display.flip()
 
+    width = screen.get_size()[0]
+    height = screen.get_size()[1]
     mouse_x = pygame.mouse.get_pos()[0]
     mouse_y = pygame.mouse.get_pos()[1]
+    surface = pygame.Surface((width, height))
+    button_y = height // 2 - 10
+    button1_3_x = width // 2 - button_width - space_between_buttons
+    button2_4_x = width // 2 + space_between_buttons
+    button1_2_y = button_y - button_height // 2
+    button3_4_y = button_y + button_height // 2 + small_button_distanse_from_button
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -77,6 +80,8 @@ while True:
             button4_color = white
             if event.type == pygame.MOUSEBUTTONDOWN:
                 webbrowser.open("https://slavchik.net/all/minecraft/mcsl")
+        # elif width > 512:
+        #     button_width *
         else:
             button1_color = black
             button2_color = black
@@ -87,10 +92,9 @@ while True:
             button3_text = font_small.render("Open server folder", True, (white))
             button4_text = font_small.render("Open documentation", True, (white))
 
-
-    for i in range(height // 16):
-        for j in range(width // 16):
-            surface.blit(dirt_image, dirt_image.get_rect(topleft=(j * 16 * dirt_image_resize_amount, i * 16 * dirt_image_resize_amount)))
+    for h in range(height // 16):
+        for w in range(width // 16):
+            surface.blit(dirt_image, dirt_image.get_rect(topleft=(w * 16 * dirt_image_resize_amount, h * 16 * dirt_image_resize_amount)))
 
 
     pygame.draw.rect(surface, button1_color, (button1_3_x, button1_2_y, button_width, button_height))
