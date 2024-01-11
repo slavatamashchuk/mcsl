@@ -1,6 +1,8 @@
 cd ..
-if [ -e "server.jar" ] && [ -e "eula.txt" ] && [ -e "server.properties" ]; then
+if [ -e "server.jar" ]; then
     echo Server started
+elif [ -e "../" ]; then
+    echo Error: parent directory not found
 else
-    echo Error: files not found
+    echo Error: file not found
 fi
