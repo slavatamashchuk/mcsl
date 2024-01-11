@@ -9,8 +9,10 @@ pygame.font.init()
 pygame.display.set_caption("Minecraft Server Launcher")
 pygame.display.set_icon(pygame.image.load("resources/icon.png"))
 
-width = 960
-height = 512
+width_default = 960
+height_default = 512
+width = width_default
+height = height_default
 white = (255, 255, 255)
 black = (0, 0, 0)
 button1_color = black
@@ -18,11 +20,12 @@ button2_color = black
 button3_color = black
 button4_color = black
 button_height = 100
-button_width = width // 2 - 20
-space_between_buttons = 5
+button_width_default = width_default // 2 - 20
+button_width = button_width_default
+space_between_buttons_and_center_width = 5
 button_border_radius = 2
 small_button_height = button_height // 3
-small_button_distanse_from_button = 15
+small_button_distanse_from_button = 10
 margin_buttom_of_text = 1
 font_path = "resources/minecraft_font.ttf"
 font_big = pygame.font.Font(font_path, 36)
@@ -34,6 +37,7 @@ button3_text = font_small.render("Open server folder", True, white)
 button4_text = font_small.render("Open documentation", True, white)
 dirt_image = pygame.image.load("resources/dirt.png")
 dirt_image_resize_amount = 4
+dirt_image_size = 16
 big_button_texture = pygame.transform.scale(pygame.image.load("resources/big_button_texture.png"), (button_width - button_border_radius * 2, button_height - button_border_radius * 2))
 small_button_texture = pygame.transform.scale(pygame.image.load("resources/small_button_texture.png"), (button_width - button_border_radius * 2, small_button_height - button_border_radius * 2))
 dirt_image = pygame.transform.scale(dirt_image, (dirt_image.get_width() * dirt_image_resize_amount, dirt_image.get_height() * dirt_image_resize_amount))
@@ -51,8 +55,8 @@ while True:
     mouse_y = pygame.mouse.get_pos()[1]
     surface = pygame.Surface((width, height))
     button_y = height // 2 - 10
-    button1_3_x = width // 2 - button_width - space_between_buttons
-    button2_4_x = width // 2 + space_between_buttons
+    button1_3_x = width // 2 - button_width - space_between_buttons_and_center_width
+    button2_4_x = width // 2 + space_between_buttons_and_center_width
     button1_2_y = button_y - button_height // 2
     button3_4_y = button_y + button_height // 2 + small_button_distanse_from_button
 
@@ -80,8 +84,6 @@ while True:
             button4_color = white
             if event.type == pygame.MOUSEBUTTONDOWN:
                 webbrowser.open("https://slavchik.net/all/minecraft/mcsl")
-        # elif width > 512:
-        #     button_width *
         else:
             button1_color = black
             button2_color = black
@@ -91,10 +93,11 @@ while True:
             button2_text = font_big.render("Change world", True, (white))
             button3_text = font_small.render("Open server folder", True, (white))
             button4_text = font_small.render("Open documentation", True, (white))
+            button_width = button_width_default
 
-    for h in range(height // 16):
-        for w in range(width // 16):
-            surface.blit(dirt_image, dirt_image.get_rect(topleft=(w * 16 * dirt_image_resize_amount, h * 16 * dirt_image_resize_amount)))
+    for h in range(height // dirt_image_size):
+        for w in range(width // dirt_image_size):
+            surface.blit(dirt_image, dirt_image.get_rect(topleft=(w * dirt_image_size * dirt_image_resize_amount, h * dirt_image_size * dirt_image_resize_amount)))
 
 
     pygame.draw.rect(surface, button1_color, (button1_3_x, button1_2_y, button_width, button_height))
