@@ -85,6 +85,7 @@ while True:
         elif mouse_x > button2_4_x and mouse_x < button2_4_x + button_width and mouse_y > button3_4_y and mouse_y < button3_4_y + button_height:
             button4_color = white
             if event.type == pygame.MOUSEBUTTONDOWN:
+                #
                 webbrowser.open("https://slavchik.net/all/minecraft/mcsl")
         else:
             button1_color = black
