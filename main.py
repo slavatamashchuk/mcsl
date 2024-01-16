@@ -6,6 +6,7 @@ import webbrowser
 
 
 pygame.font.init()
+pygame.mixer.init()
 pygame.display.set_caption("Minecraft Server Launcher")
 pygame.display.set_icon(pygame.image.load("resources/icon.png"))
 
@@ -41,6 +42,7 @@ dirt_image_size = 16
 big_button_texture = pygame.transform.scale(pygame.image.load("resources/big_button_texture.png"), (button_width - button_border_radius * 2, button_height - button_border_radius * 2))
 small_button_texture = pygame.transform.scale(pygame.image.load("resources/small_button_texture.png"), (button_width - button_border_radius * 2, small_button_height - button_border_radius * 2))
 dirt_image = pygame.transform.scale(dirt_image, (dirt_image.get_width() * dirt_image_resize_amount, dirt_image.get_height() * dirt_image_resize_amount))
+click_sound = pygame.mixer.Sound("resources/click.ogg")
 screen = pygame.display.set_mode((width, height), pygame.RESIZABLE)
 surface = pygame.Surface((width, height))
 
