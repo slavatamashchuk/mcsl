@@ -3,3 +3,4 @@ dirt.png: minecraft
 icon: https://www.freeiconspng.com/img/16689 (edited)
 big_button_texture.png: minecraft (edited)
 small_button_texture.png: minecraft (edited)
+click.ogg: minecraft
