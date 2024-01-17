@@ -69,6 +69,7 @@ while True:
         elif mouse_x > button1_3_x and mouse_x < button1_3_x + button_width and mouse_y > button1_2_y and mouse_y < button1_2_y + button_height:
             button1_color = white
             if event.type == pygame.MOUSEBUTTONDOWN:
+                click_sound.play(0)
                 result = subprocess.run(["sh", "sh/start-server.sh"], stdout=subprocess.PIPE)
                 button1_text = font_for_button_results.render(result.stdout.decode()[:-1], True, (white))
                 if result.stdout.decode()[:-1] == "Server started":
@@ -76,17 +77,19 @@ while True:
         elif mouse_x > button2_4_x and mouse_x < button2_4_x + button_width and mouse_y > button1_2_y and mouse_y < button1_2_y + button_height:
             button2_color = white
             if event.type == pygame.MOUSEBUTTONDOWN:
+                click_sound.play(0)
                 result = subprocess.run(["sh", "sh/change-world.sh"], stdout=subprocess.PIPE)
                 button2_text = font_for_button_results.render(result.stdout.decode()[:-1], True, (white))
         elif mouse_x > button1_3_x and mouse_x < button1_3_x + button_width and mouse_y > button3_4_y and mouse_y < button3_4_y + button_height:
             button3_color = white
             if event.type == pygame.MOUSEBUTTONDOWN:
+                click_sound.play(0)
                 os.system("open ..")
         elif mouse_x > button2_4_x and mouse_x < button2_4_x + button_width and mouse_y > button3_4_y and mouse_y < button3_4_y + button_height:
             button4_color = white
             if event.type == pygame.MOUSEBUTTONDOWN:
-                #
-                webbrowser.open("https://slavchik.net/all/minecraft/mcsl")
+                click_sound.play(0)
+                webbrowser.open("https://slavchik.net/all/MCSL")
         else:
             button1_color = black
             button2_color = black
